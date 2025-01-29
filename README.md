@@ -2,7 +2,15 @@
 
 Projeto recebe um arquivo .odt como template, um arquivo .txt com parametro para substituir as variaveis no template, e gera um novo arquivo .odt, cria um versão .docx e gera um versão em .pdt
 
-## Getting Started
+## Requesitos
+
+Instalar a biblioteca [pandoc](https://pandoc.org/installing.html) https://pandoc.org/installing.html
+
+```shell
+choco install pandoc
+```
+
+## Getting Startedn
 
 To run this application, follow the steps below:
 
