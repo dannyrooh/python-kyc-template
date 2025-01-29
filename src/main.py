@@ -5,6 +5,13 @@ import yaml
 from odf.opendocument import load
 from odf.text import P
 import subprocess
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Constants
+LIBREOFFICE_PATH = os.getenv('LIBREOFFICE_PATH')
+
 
 def save_file(file_path):
     # Define the destination directory
@@ -57,7 +64,7 @@ def convert_odt_to_docx(file_path):
     destination_path = file_path.replace('.odt', '.docx')
 
     # Run the LibreOffice command to convert the file
-    subprocess.run(["C:\\Program Files\\LibreOffice\\program\\soffice.exe", "--headless", "--convert-to", "docx", file_path, "--outdir", os.path.dirname(file_path)], check=True)
+    subprocess.run([LIBREOFFICE_PATH, "--headless", "--convert-to", "docx", file_path, "--outdir", os.path.dirname(file_path)], check=True)
 
     print(f"Arquivo convertido para .docx: {destination_path}")
 
@@ -66,7 +73,7 @@ def convert_odt_to_pdf(file_path):
     destination_path = file_path.replace('.odt', '.pdf')
 
     # Run the LibreOffice command to convert the file
-    subprocess.run(["C:\\Program Files\\LibreOffice\\program\\soffice.exe", "--headless", "--convert-to", "pdf", file_path, "--outdir", os.path.dirname(file_path)], check=True)
+    subprocess.run([LIBREOFFICE_PATH, "--headless", "--convert-to", "pdf", file_path, "--outdir", os.path.dirname(file_path)], check=True)
 
     print(f"Arquivo convertido para .pdf: {destination_path}")
 

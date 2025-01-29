@@ -1,6 +1,7 @@
 kyc*.odt
 kyc*.docx
 .~lock*
+variables.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
