@@ -61,6 +61,15 @@ def convert_odt_to_docx(file_path):
 
     print(f"Arquivo convertido para .docx: {destination_path}")
 
+def convert_odt_to_pdf(file_path):
+    # Define the destination path for the PDF file
+    destination_path = file_path.replace('.odt', '.pdf')
+
+    # Run the LibreOffice command to convert the file
+    subprocess.run(["C:\\Program Files\\LibreOffice\\program\\soffice.exe", "--headless", "--convert-to", "pdf", file_path, "--outdir", os.path.dirname(file_path)], check=True)
+
+    print(f"Arquivo convertido para .pdf: {destination_path}")
+
 
 # Define the source paths
 source_path = os.path.join(os.path.dirname(__file__), 'template', 'kyc2025.odt')
@@ -75,6 +84,9 @@ path_saved = save_file(source_path)
 # Call the function to replace text in the ODT file
 # replace_text_in_odt(path_saved, replacements)
 replace_text_in_odt(path_saved, yaml_data)
+
+# exporta para pdf
+convert_odt_to_pdf(path_saved)
 
 # Call the function to convert the ODT file to DOCX
 convert_odt_to_docx(path_saved)
