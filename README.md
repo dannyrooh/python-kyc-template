@@ -1,14 +1,34 @@
 # python-kyc-template
 
-Projeto recebe um arquivo .odt como template, um arquivo .txt com parametro para substituir as variaveis no template, e gera um novo arquivo .odt, cria um versão .docx e gera um versão em .pdt
+Projeto recebe um arquivo .odt como template, um arquivo .yaml com **keys e values** para substituirem as variavéis no template. Após a substituição, serão gerados os seguintes arquivos:
 
-## Requesitos
+   - .odt (LibreOffice)
+   - .docx (Word)
+   - .pdf (PDF)
 
-Instalar a biblioteca [pandoc](https://pandoc.org/installing.html) https://pandoc.org/installing.html
+As variáveis a serem criadas no corpo do arquivo de template.odt, deverão corresponder as chaves no arquivo .yaml, no arquivo .yaml as chaves estão em minusculas e no template devem estar entres os caraceres # e em maisculas.
 
-```shell
-choco install pandoc
-```
+## Issue
+
+Features e melhorias a serem implementadas
+
+1. Receber o arquivo de template como parâmetro
+2. Receber um ou mais arquivos de variaveis como parâmetro
+3. Possibilitar a escolha do diretório de destino dos arquivos gerados
+
+## Requisitos
+
+- Possuir o LIbreOffice instalado ou path onde está o arquivo soffice.exe
+
+---
+
+## Como funciona
+
+1. Ajuste e renomeie o arquivo **./template/template.odt.example** para **./template/template.odt**
+2. Ajuste e renomeie o arquivo **./variavel/variaveis.yaml.example** para **./variavel/variaveis.yaml**
+3. Ajuste as constantese e renomeie o arquivo **.env-example** para **.env**
+4. Execute o comando **python src/main.py**
+
 
 ## Getting Startedn
 
@@ -35,13 +55,6 @@ To run this application, follow the steps below:
    python src/main.py
    ```
 
-## Output
-
-When you run the application, it will display the following message in the console:
-
-```shell
-Arquivo processado
-```
 
 ## License
 

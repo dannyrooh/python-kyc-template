@@ -1,0 +1,97 @@
+# Personal
+
+personal:
+  name: John Doe Craze
+  firstname: John
+  middlename: Doe
+  lastname: Craze
+  gender: Male
+  datebird: Sep.01, 1947
+  socialnumber: MF 777 777 777-00
+  countrycitizenship: LONDON
+
+  address: 888, Prof. Xavier Mutante
+  city: LONDON
+  state: LONDON
+  country: ENGLAND
+
+  phone: N/A
+  fax: N/A
+  mobile: N/A
+  email: John.doe.craze@gmail.com.x
+  postalcode: 0000-X2X
+  
+  passport: FW 777 888
+  passissue: JAN 10th. 2024
+  passexpiry: JAN 9th.2029
+  passpais: ENGLAND
+  passauthority: FEDERAL POLICE - ENGLAND
+
+translator:
+  language: SPANISH/PORTUGUESE
+  english: 'No'
+  translator: DR. ESTRANHO
+  translatorphone: +55 (99) X 7777 8888
+  translatoraddress: dr.estranho@tradutor.com
+
+corporate:
+  cname: MUTANTE GLOBAL CORP 
+  caddress: 33th. AVENUE PAULISTY – LONDON CITY – STATE OF LONDON - ENGLAND 
+  cstreet: 33th. AVENUE PAULISTY
+  ccity: LONDON
+  cstate: LONDOR
+  ccountry: ENGLAND
+  cpostalcode: 1111-X3X
+  cphone: +99 99 9999 1111
+  cmobile: +99 99 9999 2222
+  cfax: N/A
+  cemail: duendes@mutanteglobal.corp
+
+  cdate: FEB 11 th 2011
+  cday: '11'
+  cmonth: FEB
+  cyear: '2011'
+  clocation: LONDON
+
+bank:
+  bank: Gringotts Wizarding Bank
+  bstreet: lado norte do Beco Diagonal
+  bcity: Londres
+  bstate: Londres
+  bcountry: ENGLAND
+  bpostalcode: 2222-X4X
+  baccount: MUTANTE GLOBAL CORP
+  baccountnumber: 16 918 -8
+  bsortcode: 2833-9
+  BSWIFT: BCOGRINGOTTS
+  bofficername: Barriga-de-Ferro Ucraniana
+  bphone: +99 99 9999 9999
+
+advisor:
+  advisor: Obi-Wan Kenobi
+  acompany: StarWars
+  aaddress: Estrela da morte, 666
+  acity: Orion
+  astate: Orion
+  acountry: Galaxia de Rá
+  apostalcode: 3333-X4X
+  aphone: +55 ZZ 12345 6789
+  afax: N/A
+  aemail: Obi.Yan.Kenobi@startreck.sol
+
+asset:
+  asset: PRECIOUS BITCOIN
+  assetcountry: ENGLAND
+  value: 7,932,111,002.33
+  valuewords: Seven billion, nine hundred thirty-two million, one hundred eleven thousand, two dollars and thirty-three cents
+
+security:
+  SKR: 033/2000/444.911, 033/2000/444.912
+  securityhouse: BLACK WATER SEGURANÇA BRASIL EIRELI
+  securityaddress: 19th, Vagoneta Street
+  securitycountry: ENGLAND
+  securityofficer: N/A
+  securityphone: N/A
+  securityemail: N/A
+
+

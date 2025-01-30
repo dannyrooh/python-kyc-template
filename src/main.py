@@ -24,7 +24,7 @@ def save_file(file_path):
 
     # Copy the file
     copyfile(file_path, destination_path)
-    print("Arquivo processado")
+    print("Arquivo processado") 
 
     return destination_path
 
@@ -79,8 +79,8 @@ def convert_odt_to_pdf(file_path):
 
 
 # Define the source paths
-source_path = os.path.join(os.path.dirname(__file__), 'template', 'kyc2025.odt')
-yaml_path = os.path.join(os.path.dirname(__file__), 'kyc-var', 'variables.yaml')
+source_path = os.path.join(os.path.dirname(__file__), 'template', 'template.odt')
+yaml_path = os.path.join(os.path.dirname(__file__), 'variable', 'variable.yaml')
 
 # Call the function to read the YAML file and print keys with values
 yaml_data = read_yaml_variavel(yaml_path)
