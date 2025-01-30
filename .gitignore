@@ -1,4 +1,8 @@
-kyc*.odt
+*.odt
+*.docx
+*.pdf
+*.yaml
+.~lock*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
