@@ -1,99 +1,60 @@
 import os
 from datetime import datetime
-from shutil import copyfile
-import yaml
-from odf.opendocument import load
-from odf.text import P
-import subprocess
-from dotenv import load_dotenv
 
-load_dotenv()
+from util import save_file, read_yaml_variavel, replace_text_in_odt, convert_odt_to_docx, convert_odt_to_pdf, get_contrato_basedir, get_template_path, get_variable_value
 
-# Constants
-LIBREOFFICE_PATH = os.getenv('LIBREOFFICE_PATH')
+from param import ParamReader
 
+if __name__ == "__main__":
+    param_reader = ParamReader()
+    args = param_reader.parse_args()
 
-def save_file(file_path):
-    # Define the destination directory
-    destination_dir = os.path.join(os.path.dirname(__file__), 'kyc')
-    os.makedirs(destination_dir, exist_ok=True)
-
-    # Generate the destination file name with the current date and time
-    current_time = datetime.now().strftime('%Y%m%d_%H%M%S')
-    destination_path = os.path.join(destination_dir, f'kyc_{current_time}.odt')
-
-    # Copy the file
-    copyfile(file_path, destination_path)
-    print("Arquivo processado") 
-
-    return destination_path
-
-def read_yaml_variavel(file_path):
-    result = []
-    with open(file_path, 'r', encoding='utf-8') as file:
-        data = yaml.safe_load(file)
-        for section in data.values():
-            if isinstance(section, dict):
-                for key, value in section.items():
-                    if value and not isinstance(value, (dict, list)):
-                        formatted_key = f"#{key.upper()}#"
-                        result.append((formatted_key, value))
-    return result
-
-def replace_text_in_odt(file_path, replacements):
-    # Load the ODT file
-    doc = load(file_path)
+    path_file_variable = param_reader.get_path_variavel(get_contrato_basedir(), args.v)
     
-# Percorrer todos os parágrafos do documento
-    for paragraph in doc.getElementsByType(P):
-        for node in paragraph.childNodes:  # Percorre todos os elementos dentro do parágrafo
-            if node.nodeType == node.TEXT_NODE:  # Verifica se é um nó de texto válido
-                for key, value in replacements:
-                    if key in node.data:
-                        node.data = node.data.replace(key, value)
-            elif node.nodeType == node.ELEMENT_NODE:  # Verifica elementos internos (ex.: <text:span>)
-                if node.firstChild and node.firstChild.nodeType == node.TEXT_NODE:
-                    for key, value in replacements:
-                        if key in node.firstChild.data:
-                            node.firstChild.data = node.firstChild.data.replace(key, value)
-
-    doc.save(file_path)
-
-def convert_odt_to_docx(file_path):
-    # Define the destination path for the DOCX file
-    destination_path = file_path.replace('.odt', '.docx')
-
-    # Run the LibreOffice command to convert the file
-    subprocess.run([LIBREOFFICE_PATH, "--headless", "--convert-to", "docx", file_path, "--outdir", os.path.dirname(file_path)], check=True)
-
-    print(f"Arquivo convertido para .docx: {destination_path}")
-
-def convert_odt_to_pdf(file_path):
-    # Define the destination path for the PDF file
-    destination_path = file_path.replace('.odt', '.pdf')
-
-    # Run the LibreOffice command to convert the file
-    subprocess.run([LIBREOFFICE_PATH, "--headless", "--convert-to", "pdf", file_path, "--outdir", os.path.dirname(file_path)], check=True)
-
-    print(f"Arquivo convertido para .pdf: {destination_path}")
-
+    print(f"Extensões: {args.e}")
+    print(f"Template: {args.t}") 
 
 # Define the source paths
-source_path = os.path.join(os.path.dirname(__file__), 'template', 'template.odt')
-yaml_path = os.path.join(os.path.dirname(__file__), 'variable', 'variable.yaml')
+# source_path = os.path.join(os.path.dirname(__file__), 'template', 'template.odt')
+
+# Template
+file_template = get_template_path(args.t)
+
+print(file_template)
+
+prefix = args.t
+
 
 # Call the function to read the YAML file and print keys with values
-yaml_data = read_yaml_variavel(yaml_path)
+yaml_data = read_yaml_variavel(path_file_variable  )
+
+file_name_save = (args.t).upper() + '-' + str(get_variable_value(yaml_data, '#FNAME#')) + '.odt'
+
+print(file_name_save)
+
+path_file_output =  os.path.join(get_contrato_basedir(), args.v, 'out', datetime.now().strftime('%Y%m%d_%H%M%S'))
+
+print(file_template)
+print(path_file_output)
 
 # Call the function to save the file
-path_saved = save_file(source_path)
+path_saved = save_file(file_template, path_file_output, file_name_save)
+
+# print('savedfile: ', path_saved)
+
+# print(yaml_data)
 
 # Call the function to replace text in the ODT file
 # replace_text_in_odt(path_saved, replacements)
 replace_text_in_odt(path_saved, yaml_data)
 
-# exporta para pdf
-convert_odt_to_pdf(path_saved)
+if 'pdf' in args.e:
+    convert_odt_to_pdf(path_saved)
 
-# Call the function to convert the ODT file to DOCX
-convert_odt_to_docx(path_saved)
+if 'docx' in args.e:
+    convert_odt_to_docx(path_saved,path_file_output)
+
+# if 'odt' not in args.e:
+#     os.remove(path_saved)
+    
+
